@@ -1,11 +1,24 @@
-import grn from "../../datas/cards_grn.json";
+import Header from "../../components/header/Header";
+import ShoppingList from "../../components/shoppingList/ShoppingList";
+import Cart from "../../components/cart/Cart";
+
+import "./home.css"
 
 function Home() {
-  return (
-    <div className="App">
-      <h1>HOME</h1>
-    </div>
-  );
-}
+    return (
+        <div className="home">
+            <Header />
+            <div className="home-container">
+                <div className="home-container-cart">
+                    <Cart />
+                </div>
 
+                <div className="home-container-shoppingList">
+                    <ShoppingList />
+                </div>
+            </div>
+        </div>
+    );
+}
 export default Home;
+
