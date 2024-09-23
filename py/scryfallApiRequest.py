@@ -7,7 +7,8 @@ def download_image(url, filepath):
     response = requests.get(url)
     if response.status_code == 200:
         with open(filepath, 'wb') as file:
-            file.write(response.content)
+            print("image")
+            #file.write(response.content)
 
     else:
         print('Failed to download image:', response.status_code)
@@ -38,6 +39,18 @@ def get_cards_from_set(set_code):
     return all_cards
 
 
+def get_set_info(set_code):
+    """ Fonction pour récupérer les informations du set, notamment l'URL de l'icône """
+    set_url = f"https://api.scryfall.com/sets/{set_code}"
+    response = requests.get(set_url)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        raise Exception(f"Erreur lors de la récupération des infos du set {set_code}")
+
+
+
+
 def format_card_name_for_path(card_name):
     return card_name.replace('/', '-').replace(' ', '_')
 
@@ -45,6 +58,7 @@ def format_card_name_for_path(card_name):
 def create_json_with_prices_and_download_images(set_code, image_size='normal'):
     output_files = f'cards_{set_code}.json'
     output_folder = f'images_{set_code}'
+    
 
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
@@ -54,6 +68,12 @@ def create_json_with_prices_and_download_images(set_code, image_size='normal'):
             os.remove(os.path.join(output_folder, file))
 
     cards = get_cards_from_set(set_code)
+    set_info = get_set_info(set_code) 
+
+    set_icon_svg_uri = set_info.get('icon_svg_uri')
+
+
+
     cards_with_prices_and_paths = []
 
     for card in cards:
@@ -71,15 +91,16 @@ def create_json_with_prices_and_download_images(set_code, image_size='normal'):
         card_type = card.get('type_line')
         oracle_text = card.get('oracle_text')
         colors = card.get('colors', [])
+        ext_svg_uri = card.get('icon_svg_uri')
 
         formatted_name = format_card_name_for_path(card_name)
         image_path = f"../../assets/{output_folder}/{formatted_name}.jpg"
-        image_uris = card.get('image_uris')
+        image_uris = set_icon_svg_uri
 
         if 'image_uris' in card:
             image_url = card['image_uris'].get(image_size)
-            if image_url:
-                download_image(image_url, os.path.join(output_folder, f"{formatted_name}.jpg"))
+            #if image_url:
+            #    download_image(image_url, os.path.join(output_folder, f"{formatted_name}.jpg"))
 
         cards_with_prices_and_paths.append({
             'name': card_name,
@@ -95,7 +116,8 @@ def create_json_with_prices_and_download_images(set_code, image_size='normal'):
             'oracle_text': oracle_text,
             'path': image_path,
             'image_uris': image_uris,
-            'colors': colors if colors else 'Colorless'
+            'colors': colors if colors else 'Colorless',
+            'ext_svg_uri': ext_svg_uri
         })
 
     with open(output_files, 'w', encoding='utf-8') as f:
