@@ -54,10 +54,8 @@ function ShoppingList(props) {
     return (
         <div className="shoppingList-container">
             <div className="shoppingList">
-                <h1>Produits</h1>
-
                 <div className="shoppingList-search">
-                    {/* Barre de recherche */}
+                
                     <input 
                         type="text" 
                         placeholder="Rechercher une carte" 
@@ -66,7 +64,7 @@ function ShoppingList(props) {
                         className="search-bar"
                     />
 
-                    {/* Icônes des extensions */}
+   
                     <div className="icons-container">
                         <img
                             src='https://svgs.scryfall.io/sets/grn.svg?1727064000'
