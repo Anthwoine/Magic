@@ -1,31 +1,51 @@
 .card-detail-container {
-    display: flex;
     height: 100%;
     width: auto;
 }
 
 .details {
-    margin-top: 50px;
     display: flex;
+    margin-top: 30px;
+    position: relative; /* Pour activer le positionnement absolu de l'image */
 }
 
+.card-detail-image {
+    position: absolute; /* Positionnement absolu pour chevauchement */
+    left: 0;
+    top: 0;
+    z-index: 2; /* Plus grand que card-details pour être au-dessus */
+}
 
 .card-detail-image img  {
     height: 558px;
     width: 400px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+    border-radius: 17px;
 }
 
 .card-details {
+    background-color: #fff;
     border: 2px solid grey;
     border-top: 5px solid black;
     border-bottom: 5px solid black;
     border-radius: 10px;
-    margin-left: 10px;
-    padding: 10px;
+    padding: 20px;
+    margin-left: 385px;
+    margin-top: 30px;
     width: 400px;
     font-size: 25px;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 0px 9px 15px rgba(0, 0, 0, 0.7);
 }
+
 
 .card-details p:not(:last-child) {
     border-bottom: 2px solid grey;
+}
+
+.mana-icon {
+    width: 25px;
+    height: 25px;
+    margin-right: 2px;
 }
