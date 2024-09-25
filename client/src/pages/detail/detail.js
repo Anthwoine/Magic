@@ -4,9 +4,14 @@ import ItemDetails from '../../components/itemdetail/ItemDetails'
 
 function Detail() {
 return (
-    <div>
-        <Header />
-        <ItemDetails/>
+    <div className="page detail">
+        <div className="page-header">
+            <Header />
+        </div>
+        <div className="page-container detail-container">
+            <ItemDetails/>
+        </div>
+
     </div>
 )
 }

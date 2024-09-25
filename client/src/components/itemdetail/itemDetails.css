@@ -1,0 +1,31 @@
+.card-detail-container {
+    display: flex;
+    height: 100%;
+    width: auto;
+}
+
+.details {
+    margin-top: 50px;
+    display: flex;
+}
+
+
+.card-detail-image img  {
+    height: 558px;
+    width: 400px;
+}
+
+.card-details {
+    border: 2px solid grey;
+    border-top: 5px solid black;
+    border-bottom: 5px solid black;
+    border-radius: 10px;
+    margin-left: 10px;
+    padding: 10px;
+    width: 400px;
+    font-size: 25px;
+}
+
+.card-details p:not(:last-child) {
+    border-bottom: 2px solid grey;
+}

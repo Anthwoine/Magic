@@ -1,12 +1,13 @@
 import Header from "../../components/header/Header";
 import ShoppingList from "../../components/shoppingList/ShoppingList";
 import Cart from "../../components/cart/Cart";
-import { useState }  from 'react';
+import {useEffect, useState} from 'react';
 import "./home.css";
 
 function Home() {
 
     const [cart, setCart] = useState([])
+    const [cards, setCards] = useState([]);
 
     function addToCart(name, price) {
         setCart((prevCart) => [...prevCart, {
@@ -26,14 +27,25 @@ function Home() {
     }
 
 
+    useEffect( () => {
+        async function fetchDate() {
+            const response = await fetch('http://localhost:8080/api/cartes/all')
+            return await response.json();
+        }
+
+        fetchDate().then(data => setCards(data))
+    }, [])
+
+
 
 
     return (
-        <div className="home">
-            <div className="home-header">
+        <div className="page">
+            <div className="page-header">
                 <Header />
             </div>
-            <div className="home-container">
+
+            <div className="page-container">
                 <div className="home-container-cart">
                     <Cart 
                         cart={cart} 
@@ -43,7 +55,7 @@ function Home() {
                 </div>
 
                 <div className="home-container-shoppingList">
-                    <ShoppingList addToCart={addToCart}/>
+                    <ShoppingList addToCart={addToCart} cards={cards}/>
                 </div>
             </div>
         </div>

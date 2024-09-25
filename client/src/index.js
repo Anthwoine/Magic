@@ -21,7 +21,7 @@ root.render(
       </Route>
 
 
-      <Route exact path="/detail">
+      <Route path="/detail/:cardId">
         <Detail />
       </Route>
       
