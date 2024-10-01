@@ -1,10 +1,11 @@
 import './cart.css'
+import {Button} from "@mui/material";
 
 function Cart(props) {
-    // Calcul du total du panier en utilisant reduce
+
     const totalPrice = props.cart.reduce((total, item) => {
         return total + (+item.card_price);
-    }, 0); // 0 est la valeur initiale de total
+    }, 0);
 
     return (
         <div className="cart-container">
@@ -13,7 +14,14 @@ function Cart(props) {
                 <div className="cart-items">
                     {props.cart.map((item, index) => (
                         <div key={index} className="cart-item">
-                            <button onClick={() => props.suprItemFromCart(index)}>--</button>
+                            <Button
+                                onClick={() => props.suprItemFromCart(index)}
+                                variant="contained"
+                                size="small"
+                                style={{ marginRight: '16px', marginLeft: '16px', height: '30px', width: '30px' }}
+                            >
+                                X
+                            </Button>
                             <p>{item.card_name} - {item.card_price} €</p>
                         </div>
                     ))}
@@ -23,9 +31,13 @@ function Cart(props) {
                 </div>
 
                 {props.cart.length > 0 ?                 
-                    <button onClick={() => props.suprCart()}>
+                    <Button
+                        onClick={() => props.suprCart()}
+                        variant="contained"
+                        style={{ marginLeft: '16px' }}
+                    >
                         Vider le panier
-                    </button> 
+                    </Button>
                     : null
                 }
 

@@ -1,11 +1,12 @@
 .card-detail-container {
     height: 100%;
     width: auto;
+
 }
 
 .details {
     display: flex;
-    margin-top: 30px;
+    margin-top: 130px;
     position: relative; /* Pour activer le positionnement absolu de l'image */
 }
 
@@ -48,4 +49,27 @@
     width: 25px;
     height: 25px;
     margin-right: 2px;
+}
+
+.page.dark-mode .card-details {
+    background-color: #1a1a1a;
+    color: white;
+    border: 2px solid grey;
+    border-top: 5px solid #df3d3d;
+    border-bottom: 5px solid #df3d3d;
+}
+
+
+.change-button-container {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    bottom: 80% ;
+    transform: translateX(-50%);
+
+}
+
+.change-card-button {
+    width: 200px;
+    height: 60px;
 }

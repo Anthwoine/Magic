@@ -12,9 +12,6 @@ app.use(cors());
 
 
 app.use('/api/cartes', require('./routes/carte.route'));
-app.all('*', (req, res) => {
-    res.send('Hello World');
-});
 
 
 app.listen(port, () => {

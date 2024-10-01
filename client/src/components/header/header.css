@@ -8,3 +8,56 @@
     color: white;
     border-bottom: 5px solid #df3d3d;
 }
+
+.header-logo-container {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+}
+
+.header-logo-container {
+    text-decoration: none;
+    color: inherit;
+}
+
+.header-logo-container:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: transform 0.3s ease-out;
+}
+
+.header-name {
+    margin-left: 10px;
+}
+
+.header-name h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 40px;
+}
+
+.header-name p {
+    margin-left: 25px;
+    margin-top: -10px;
+    font-size: 12px;
+}
+
+
+.header-navigation {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.header-navigation div {
+    margin: 0 10px;
+}
+
+.header-navigation div span {
+    margin-left: 50px;
+    text-decoration: none;
+    font-size: 35px;
+    color: white;
+}
+
+

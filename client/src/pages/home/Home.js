@@ -1,11 +1,12 @@
 import Header from "../../components/header/Header";
 import ShoppingList from "../../components/shoppingList/ShoppingList";
 import Cart from "../../components/cart/Cart";
-import {useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import "./home.css";
+import {PreferencesContext} from "../../context";
 
 function Home() {
-
+    const {darkMode, setDarkMode} = useContext(PreferencesContext);
     const [cart, setCart] = useState([])
     const [cards, setCards] = useState([]);
 
@@ -40,7 +41,7 @@ function Home() {
 
 
     return (
-        <div className="page">
+        <div className={`page ${darkMode ? 'dark-mode' : ''}`}>
             <div className="page-header">
                 <Header />
             </div>

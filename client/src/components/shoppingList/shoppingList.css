@@ -18,6 +18,34 @@
     height: 100%;
 }
 
+
+.sort-container {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    gap: 10px;
+}
+
+.logo-sort {
+    width: 50px;
+    height: 50px;
+}
+
+
+.logo-sort {
+    cursor: pointer;
+    transition: filter 0.2s ease-in-out;
+}
+
+.logo-sort.selected {
+    border: 2px solid black;
+}
+
+.logo-sort.deselected {
+    filter: grayscale(50%) brightness(0.8);
+}
+
+
 .shoppingList-cards {
     display: flex;
     flex-wrap: wrap;
@@ -34,11 +62,15 @@
 
 
 .shoppingList-search {
-    width: 40%;
+    width: 60%;
     padding: 20px;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: row;
 }
+
+
 
 .search-bar {
     width: 100%;
@@ -75,4 +107,14 @@
     border: 2px solid #000;
     border-radius: 5px;
     transform: scale(1.05);
+}
+
+.card-notfound {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    font-size: 2.5rem;
+    flex-direction: column;
 }

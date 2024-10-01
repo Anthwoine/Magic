@@ -1,21 +1,24 @@
 import Header from '../../components/header/Header'
 import ItemDetails from '../../components/itemdetail/ItemDetails'
+import {PreferencesContext} from "../../context";
+import {useContext} from "react";
 
 function Detail() {
+    const {darkMode, setDarkMode} = useContext(PreferencesContext);
 
 
+    return (
 
-return (
-    <div className="page detail">
-        <div className="page-header">
-            <Header />
+        <div className={`page detail ${darkMode ? 'dark-mode' : ''}`}>
+            <div className="page-header">
+                <Header />
+            </div>
+            <div className="page-container detail-container">
+                <ItemDetails/>
+            </div>
+
         </div>
-        <div className="page-container detail-container">
-            <ItemDetails/>
-        </div>
-
-    </div>
-)
+    )
 }
 
 export default Detail;
