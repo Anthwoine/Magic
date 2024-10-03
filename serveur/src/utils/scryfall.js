@@ -15,7 +15,7 @@ module.exports.getCard = async (setName, cardName) => {
             return data.data;
         } else {
             console.log("Aucune carte trouvée.");
-            return [];
+            return null;
         }
     } catch (error) {
         console.error("Erreur lors de la récupération des informations de la carte:", error);

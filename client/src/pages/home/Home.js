@@ -1,44 +1,35 @@
 import Header from "../../components/header/Header";
 import ShoppingList from "../../components/shoppingList/ShoppingList";
 import Cart from "../../components/cart/Cart";
-import {useContext, useEffect, useState} from 'react';
+import { useContext, useEffect, useState } from 'react';
 import "./home.css";
-import {PreferencesContext} from "../../context";
+import { PreferencesContext } from "../../context";
+import { CartContext } from "../../context/cartItem";
 
 function Home() {
-    const {darkMode, setDarkMode} = useContext(PreferencesContext);
-    const [cart, setCart] = useState([])
+    const { darkMode } = useContext(PreferencesContext);
+    const { cart, setCart } = useContext(CartContext); // Utilisation du context directement
     const [cards, setCards] = useState([]);
 
     function addToCart(name, price) {
         setCart((prevCart) => [...prevCart, {
             card_name: name,
             card_price: price
-        }])
-        console.log("Item added:", { name, price });
-        console.log("Updated cart:", cart); 
-    }
-
-    function suprCart() {
-        setCart([])
-    }
-
-    function suprItemFromCart(index) {
-        setCart((prevCart) => prevCart.filter((_, i) => i !== index));
+        }]);
     }
 
 
-    useEffect( () => {
-        async function fetchDate() {
-            const response = await fetch('http://localhost:8080/api/cartes/all')
-            return await response.json();
+
+
+    useEffect(() => {
+        async function fetchData() {
+            const response = await fetch('http://localhost:8080/api/cartes/all');
+            const data = await response.json();
+            setCards(data);
         }
 
-        fetchDate().then(data => setCards(data))
-    }, [])
-
-
-
+        fetchData();
+    }, []);
 
     return (
         <div className={`page ${darkMode ? 'dark-mode' : ''}`}>
@@ -48,11 +39,7 @@ function Home() {
 
             <div className="page-container">
                 <div className="home-container-cart">
-                    <Cart 
-                        cart={cart} 
-                        suprCart={suprCart}
-                        suprItemFromCart={suprItemFromCart}
-                    />
+                    <Cart/>
                 </div>
 
                 <div className="home-container-shoppingList">
@@ -63,7 +50,4 @@ function Home() {
     );
 }
 
-
-
 export default Home;
-

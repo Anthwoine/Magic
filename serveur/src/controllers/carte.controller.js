@@ -38,6 +38,11 @@ module.exports.ajouteCarte = async (req, res) => {
         const newCard = {};
         const carte = await getCard(ext, nom);
 
+        if (!carte) {
+            res.status(404).send('Carte non trouvée');
+            return;
+        }
+
         newCard.name = carte[0].name;
         newCard.rarity = carte[0].rarity;
         newCard.set_name = carte[0].set_name;
@@ -62,4 +67,24 @@ module.exports.ajouteCarte = async (req, res) => {
         });
     }
 };
+
+module.exports.getFavoris = async (req, res) => {
+    const cartes = await Carte.findAll({
+        where: {
+            favoris: true
+        }
+    });
+    res.status(200).json(cartes);
+}
+
+module.exports.toggleFavoris = async (req, res) => {
+    const carte = await Carte.findByPk(req.params.id);
+    if (!carte) {
+        res.status(404).send('Carte non trouvée');
+    } else {
+        carte.favoris = !carte.favoris;
+        await carte.save();
+        res.status(200).json(carte);
+    }
+}
 

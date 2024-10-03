@@ -1,7 +1,6 @@
 import './header.css'
 import {Link} from "react-router-dom";
 import { logoSVG } from "../../datas/logo";
-import {useEffect, useState} from "react";
 
 function Header() {
 
@@ -16,14 +15,20 @@ function Header() {
             </Link>
 
             <nav className={"header-navigation"}>
-                <div>
-                    <Link to={"/"}>
-                        <span>Accueil</span>
+                <div className="header-nav-link-container">
+
+                    <Link to={"/"} style={{ textDecoration: 'none' }}>
+                        <p className="header-link">Accueil</p>
                     </Link>
 
-                    <Link to={"/preferences"}>
-                        <span>Préférences</span>
+                    <Link to={"/favoris"} style={{ textDecoration: 'none' }}>
+                        <p className="header-link">Favoris</p>
                     </Link>
+
+                    <Link to={"/preferences"} style={{ textDecoration: 'none' }}>
+                        <p className="header-link">Préférences</p>
+                    </Link>
+
                 </div>
 
             </nav>

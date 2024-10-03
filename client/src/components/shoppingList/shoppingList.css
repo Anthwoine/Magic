@@ -29,37 +29,51 @@
 .logo-sort {
     width: 50px;
     height: 50px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: filter 0.2s ease-in-out, border 0.2s ease-in-out;
+    filter: grayscale(50%) brightness(0.8);
 }
 
-
-.logo-sort {
-    cursor: pointer;
-    transition: filter 0.2s ease-in-out;
+.logo-sort:hover {
+    filter: grayscale(0) brightness(1);
+    border: 2px solid transparent;
 }
 
 .logo-sort.selected {
     border: 2px solid black;
+    filter: grayscale(0) brightness(1);
 }
 
-.logo-sort.deselected {
-    filter: grayscale(50%) brightness(0.8);
-}
 
+
+.shoppingList-cards-container {
+    position: relative;
+    margin: 10px;
+    padding: 20px;
+    overflow: hidden;
+}
 
 .shoppingList-cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     height: 100%;
-    margin: 10px;
     padding-top: 20px;
     overflow: auto;
+    position: relative;
+    z-index: 1;
 }
+
 
 .shoppingList-cards::-webkit-scrollbar {
     display: none;
 }
 
+.shoppingList-cards {
+    scrollbar-width: none;
+}
 
 .shoppingList-search {
     width: 60%;
@@ -100,6 +114,10 @@
     margin: 5px;
     cursor: pointer;
     opacity: 0.7;
+}
+
+.ext-icon:hover {
+    opacity: 1;
 }
 
 .ext-icon.active {

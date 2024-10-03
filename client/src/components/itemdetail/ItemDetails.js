@@ -11,7 +11,7 @@ function ItemDetails() {
     const [formattedOracleText, setFormattedOracleText] = useState([]);
     const [newPrice, setNewPrice] = useState(card ? card.price_eur : '');
     const [anchorEl, setAnchorEl] = useState(null);
-    const [error, setError] = useState(''); // État pour gérer les erreurs
+    const [error, setError] = useState('');
 
     async function formatTextWithSymbols(text) {
         const manaSymbols = await fetchManaSymbols();
@@ -25,11 +25,11 @@ function ItemDetails() {
 
     useEffect(() => {
         async function fetchCard() {
-            const response = await fetch(`http://localhost:8080/api/cartes/${cardId}`);
+            const response = await fetch(`http://localhost:8080/api/cartes/${cardId}/by-id`);
             if (response.status === 200) {
                 const data = await response.json();
                 setCard(data);
-                setNewPrice(data.price_eur); // Met à jour le prix lors de la récupération des données
+                setNewPrice(data.price_eur);
             }
         }
 
@@ -58,12 +58,11 @@ function ItemDetails() {
     }, [card]);
 
     const handlePriceChange = async () => {
-        // Vérification si le prix est inférieur à 0
         if (newPrice < 0) {
             setError('Le prix ne peut pas être inférieur à 0.');
-            return; // Quitte la fonction si la condition est remplie
+            return;
         } else {
-            setError(''); // Réinitialise l'erreur si le prix est valide
+            setError('');
         }
 
         const response = await fetch(`http://localhost:8080/api/cartes/${cardId}/change-price`, {
@@ -77,11 +76,11 @@ function ItemDetails() {
         if (response.status === 200) {
             const updatedCard = await response.json();
             setCard(updatedCard);
-            setNewPrice(updatedCard.price_eur); // Met à jour le prix localement après le changement
+            setNewPrice(updatedCard.price_eur);
         } else {
             console.error('Erreur lors de la mise à jour du prix');
         }
-        handleClose(); // Fermer le popover après la soumission
+        handleClose();
     };
 
     const handleClick = (event) => {
@@ -90,8 +89,21 @@ function ItemDetails() {
 
     const handleClose = () => {
         setAnchorEl(null);
-        setError(''); // Réinitialise l'erreur lors de la fermeture du popover
+        setError('');
     };
+
+    const handlefav = async () => {
+        const favResponse = fetch(`http://localhost:8080/api/cartes/${cardId}/toggle-favoris`, {
+            method: 'PUT',
+        }).then((response) => {
+            if (response.status === 200) {
+               response.json().then((data) => {
+                    setCard(data);
+                });
+            }
+        });
+
+    }
 
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
@@ -100,7 +112,7 @@ function ItemDetails() {
         !card ? <p>Carte non trouvée</p> :
             <div className="card-detail-container">
 
-                <div className="change-button-container">
+                <div className="action-container">
                     <Button
                         variant="contained"
                         color="error"
@@ -110,6 +122,8 @@ function ItemDetails() {
                     >
                         Change
                     </Button>
+                    <i className="material-icons fav" onClick={handlefav}>{card.favoris ? "star" : "star_outlined" }r</i>
+
                 </div>
 
                 <Popover

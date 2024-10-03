@@ -10,7 +10,6 @@ function Item(props) {
                 <img src={props.carte.image_uri} alt={props.carte.name}/>
             </Link>
 
-            <h2>{props.carte.name}</h2>
             <Button
                 onClick={() => props.addToCart(props.carte.name, props.carte.price_eur)}
                 sx={{

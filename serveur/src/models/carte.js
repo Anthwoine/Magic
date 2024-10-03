@@ -54,6 +54,12 @@ const Carte = sequelizeConfig.define('carte', {
     colors: {
         type: Sequelize.STRING,
         allowNull: true,
+    },
+
+    favoris: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
     }
 });
 

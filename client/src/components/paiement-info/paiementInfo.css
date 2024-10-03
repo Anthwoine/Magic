@@ -1,0 +1,65 @@
+.paiement-info-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.paiement-info-container {
+    display: flex;
+}
+
+.cart-section {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.cart-section, .payment-section {
+    width: 20%;
+    border: 1px solid #ccc;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.paiement-info-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.paiement-info-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.paiement-info-container li {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.paiement-info-container .form-group {
+    margin-bottom: 15px;
+}
+
+.paiement-info-container label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.paiement-info-container input, select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.paiement-info-container .error {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}

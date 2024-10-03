@@ -1,25 +1,36 @@
-.item {
+.favoris-item {
     display: flex;
     text-align: center;
     align-items: center;
     flex-direction: column;
     width: 300px;
     height: 450px;
-    margin: 10px;
+    margin: 30px;
     padding: 10px 10px 15px 10px;
     text-overflow: ellipsis;
     border-radius: 7px;
 }
 
-
-
-.item img {
+.favoris-item img {
     width: 100%;
 }
 
-.item:hover {
+
+
+.favoris-item:hover {
     transform: scale(1.05);
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.9);
     overflow: visible;
     text-overflow:initial;
+}
+
+.remove-fav {
+    position: absolute;
+    top: -25px;
+    right: -25px;
+    font-size: 3rem;
+    cursor: pointer;
+    color: black;
+    font-weight: 1;
+    user-select: none;
 }

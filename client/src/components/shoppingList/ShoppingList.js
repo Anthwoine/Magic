@@ -2,7 +2,7 @@ import './shoppingList.css';
 import { useState, useEffect } from 'react';
 import Item from "../item/Item";
 import { Button, Popover, TextField } from "@mui/material";
-import { cards_404, red, blue, black, green, white } from "../../datas/logo";
+import {cards_404, red, blue, black, green, white, reset_settings} from "../../datas/logo";
 
 function ShoppingList(props) {
     const [cards, setCards] = useState([]);
@@ -12,6 +12,7 @@ function ShoppingList(props) {
     const [anchorEl, setAnchorEl] = useState(null);
     const [newCardExt, setNewCardExt] = useState('');
     const [newCardName, setNewCardName] = useState('');
+    const [error, setError] = useState('');
 
     useEffect(() => {
         setCards(props.cards);
@@ -32,7 +33,7 @@ function ShoppingList(props) {
         }
     };
 
-    // Fonction pour trier par couleur
+
     const toggleColor = (color) => {
         if (selectedColors.includes(color)) {
             setSelectedColors(selectedColors.filter(c => c !== color));
@@ -41,30 +42,33 @@ function ShoppingList(props) {
         }
     };
 
-    // Filtrage des cartes en fonction de la recherche et des couleurs sélectionnées
+    const resetColors = () => {
+        setSelectedColors([]); // Réinitialise les couleurs sélectionnées
+    };
+
+
     const filteredCards = cards.filter((carte) => {
         const matchesSearch = carte.name.toLowerCase().includes(search.toLowerCase());
 
-        // Si aucune couleur n'est sélectionnée, on n'applique pas de filtre sur les couleurs
+
         if (selectedColors.length === 0) {
             return matchesSearch;
         }
 
-        // Les couleurs de la carte sont séparées par des virgules, on filtre selon les couleurs sélectionnées
+
         const cardColors = carte.colors ? carte.colors.split(',').filter(Boolean) : [];
 
-        // On vérifie si au moins une des couleurs sélectionnées est présente dans les couleurs de la carte
+
         const matchesColor = selectedColors.some(color => cardColors.includes(color));
 
         return matchesSearch && matchesColor;
     });
 
-    // Ouvrir le popover au centre
+
     const handleOpenPopover = (event) => {
-        setAnchorEl(document.body); // Utiliser le body comme référence d'ancrage
+        setAnchorEl(document.body);
     };
 
-    // Fermer le popover
     const handleClosePopover = () => {
         setAnchorEl(null);
     };
@@ -72,7 +76,7 @@ function ShoppingList(props) {
     const handleAddCard = async () => {
         const data = {
             ext: newCardExt,
-            name: newCardName.replace(/\s+/g, '_')  // Remplacer les espaces par des underscores
+            name: newCardName.replace(/\s+/g, '_')
         };
 
         try {
@@ -90,10 +94,11 @@ function ShoppingList(props) {
                 setCards([...cards, newCard]);
                 handleClosePopover();
             } else {
-                console.error('Erreur lors de l’ajout de la carte');
+                setError('Erreur lors de l’ajout de la carte');
             }
         } catch (error) {
             console.error('Erreur lors de l’envoi de la requête', error);
+            setError('Erreur lors de l’ajout de la carte');
         }
     };
 
@@ -124,15 +129,15 @@ function ShoppingList(props) {
                         Price
                     </Button>
 
-                    {/* Bouton pour ajouter une carte */}
-                    <Button
+
+                        <Button
                         variant="contained"
                         style={{
                             marginLeft: "10px",
                             backgroundColor: "blue",
                             color: "white",
                             height: "40px",
-                            width: "200px",
+                            width: "300px",
                             fontSize: "13px"
                         }}
                         onClick={handleOpenPopover}
@@ -140,7 +145,7 @@ function ShoppingList(props) {
                         Ajouter une carte
                     </Button>
 
-                    {/* Icons de tri par couleur */}
+
                     <div className="sort-container">
                         <img
                             src={red()}
@@ -167,9 +172,16 @@ function ShoppingList(props) {
                             className={`logo-sort ${selectedColors.includes('W') ? 'selected' : 'deselected'}`}
                             onClick={() => toggleColor('W')}
                         />
+
+                        <img
+                            className={`logo-sort ${selectedColors.length === 0 ? 'selected' : 'deselected'}`}
+                            src={reset_settings()}
+                            style={{width: "50px", height: "50px", cursor: "pointer"}}
+                            onClick={() => resetColors()}
+
+                        />
                     </div>
 
-                    {/* Popover pour entrer les informations de la nouvelle carte */}
                     <Popover
                         id={id}
                         open={open}
@@ -202,7 +214,7 @@ function ShoppingList(props) {
                                 padding: "20px",
                                 gap: "10px",
                                 width: "400px",
-                                height: "250px"
+                                height: "300px"
                             }}
                         >
                             <TextField
@@ -217,33 +229,41 @@ function ShoppingList(props) {
                                 onChange={(e) => setNewCardName(e.target.value)}
                                 margin="normal"
                             />
+
                             <Button
                                 variant="contained"
-                                style={{ marginTop: "10px", backgroundColor: "green", color: "white" }}
+                                style={{marginTop: "10px", backgroundColor: "green", color: "white"}}
                                 onClick={handleAddCard}
                             >
                                 Ajouter
                             </Button>
+
+                            {error && <p style={{color: 'red'}}>{error}</p>}
                         </div>
                     </Popover>
                 </div>
 
-                <div className="shoppingList-cards">
-                    {filteredCards.length > 0 ? (
-                        filteredCards.map((carte, index) => (
-                            <Item
-                                key={index}
-                                carte={carte}
-                                addToCart={props.addToCart}
-                            />
-                        ))
-                    ) : (
-                        <div className="card-notfound">
-                            <img src={cards_404()} alt={"cartes"}></img>
-                            <p>Aucune carte trouvée</p>
-                        </div>
-                    )}
+                <div className="shoppingList-cards-container">
+                    <div className="shoppingList-cards">
+                        {filteredCards.length > 0 ? (
+                            filteredCards.map((carte, index) => (
+                                <Item
+                                    key={index}
+                                    carte={carte}
+                                    addToCart={props.addToCart}
+                                />
+                            ))
+                        ) : (
+                            <div className="card-notfound">
+                                <img src={cards_404()} alt={"cartes"}/>
+                                <p>Aucune carte trouvée</p>
+                            </div>
+                        )}
+                    </div>
                 </div>
+
+
+
             </div>
         </div>
     );

@@ -53,11 +53,23 @@
     margin: 0 10px;
 }
 
-.header-navigation div span {
-    margin-left: 50px;
+.header-nav-link-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.header-link {
     text-decoration: none;
+    transition: transform 0.3s ease-out;
+    margin-left: 50px;
     font-size: 35px;
     color: white;
+}
+
+.header-link:hover {
+    cursor: pointer;
+    transform: scale(1.2);
 }
 
 

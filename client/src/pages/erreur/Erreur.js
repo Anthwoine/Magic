@@ -6,7 +6,6 @@ import {Button} from "@mui/material";
 function Erreur() {
 
 
-
     return (
         <div className={'page-erreur'}>
             <img src={pages_404()}></img>

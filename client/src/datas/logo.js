@@ -11,8 +11,34 @@ module.exports.pages_404 = () => {
     return `${host}404_pages.svg`;
 }
 
+module.exports.empty_cart = () => {
+    return `${host}empty_cart.svg`;
+}
+
+module.exports.fav = () => {
+    return `${host}favoris.svg`;
+}
+
+
+
 module.exports.tune = () => {
     return `${host}tune.svg`;
+}
+
+module.exports.star = () => {
+    return `${host}star.svg`;
+}
+
+module.exports.star_filled = () => {
+    return `${host}star_filled.svg`;
+}
+
+module.exports.remove_fav = () => {
+    return `${host}remove_fav.svg`;
+}
+
+module.exports.reset_settings = () => {
+    return `${host}reset_settings.svg`;
 }
 
 
@@ -35,4 +61,6 @@ module.exports.green = () => {
 module.exports.white = () => {
     return `${host}W.svg`;
 }
+
+
 

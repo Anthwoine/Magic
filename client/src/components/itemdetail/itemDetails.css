@@ -60,13 +60,25 @@
 }
 
 
-.change-button-container {
+.action-container {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+
     position: absolute;
     left: 50%;
     bottom: 80% ;
+    width: 300px;
     transform: translateX(-50%);
+}
 
+.action-container .fav {
+    padding: 10px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+    color: red;
 }
 
 .change-card-button {
