@@ -20,19 +20,16 @@ npm start
 Initialisation de la Base de Données
 
 Le script SQL se trouve dans le dossier Magic/script/sql_cartes_script.sql. Ce script :
-
     Crée une base de données nommée magicDB.
     Insère des données pour permettre la visualisation des cartes dès le premier lancement.
 
 Exécution du script :
-
     Assure-toi d'avoir configuré ton SGBD (par ex. MySQL ou PostgreSQL).
     Exécute le script en utilisant la commande appropriée pour ton SGBD.
 
 Ajouter des Cartes dans la Base de Données
 
 Pour ajouter des cartes à la base de données, il te faut :
-
     L'extension de la carte.
     Le nom de la carte.
 
