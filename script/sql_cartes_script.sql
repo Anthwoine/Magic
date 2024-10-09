@@ -1,3 +1,7 @@
+CREATE DATABASE magicDB;
+
+USE magicDB;
+
 -- Création de la table cards
 CREATE TABLE cartes (
     id SERIAL PRIMARY KEY,
@@ -13,7 +17,8 @@ CREATE TABLE cartes (
     type VARCHAR(255),
     oracle_text TEXT,
     image_uri VARCHAR(255),
-    colors VARCHAR(50)
+    colors VARCHAR(50),
+    favoris BOOLEAN DEFAULT FALSE
 );
 
 -- Insertion des données

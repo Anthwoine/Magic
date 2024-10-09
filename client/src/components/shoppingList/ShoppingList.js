@@ -251,6 +251,7 @@ function ShoppingList(props) {
                                     key={index}
                                     carte={carte}
                                     addToCart={props.addToCart}
+                                    isSortedByPrice = {isSortedByPrice}
                                 />
                             ))
                         ) : (

@@ -57,6 +57,11 @@ module.exports.ajouteCarte = async (req, res) => {
         newCard.image_uri = carte[0].image_uris.normal;
         newCard.colors = carte[0].colors.reduce((acc, color) => acc + color + ",", "");
 
+
+        if(newCard.price_eur == null) {
+            newCard.price_eur = "1";
+        }
+
         const createdCard = await Carte.create(newCard);
 
         res.status(201).json(createdCard);

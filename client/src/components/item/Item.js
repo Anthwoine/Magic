@@ -5,7 +5,17 @@ import { Button } from '@mui/material';
 
 function Item(props) {
     return (
+
+
+
+
         <div className="item">
+
+            <div className={"price-vignette"}>
+                {props.carte.price_eur} €
+            </div>
+
+
             <Link to={`/detail/${props.carte.id}`}>
                 <img src={props.carte.image_uri} alt={props.carte.name}/>
             </Link>
@@ -20,9 +30,8 @@ function Item(props) {
                     }
                 }}
             >
-                Ajouter au panier
+                    Ajouter au panier
             </Button>
-
         </div>
     );
 }
