@@ -5,17 +5,17 @@ Installation et Configuration
 
 Depuis le dossier Magic/serveur/src, exécute la commande suivante pour démarrer le serveur :
 
-bash
-
+```bash
 node server
+```
 
 2. Lancer le Projet React
 
 Depuis le dossier Magic/client, exécute la commande suivante pour démarrer l'application React :
 
-bash
-
+```bash
 npm start
+```
 
 Initialisation de la Base de Données
 
@@ -37,13 +37,15 @@ Pour ajouter des cartes à la base de données, il te faut :
     Le nom de la carte.
 
 Exemple de cartes à importer :
-Extension	Nom de la Carte
-grn	Arboretum Elemental
-grn	Attendant of Vraska
-grn	Kraul Raider
-lrw	Mulldrifter
-lrw	Sentry Oak
-lrw	Thorn of Amethyst
-war	Cyclops Electromancer
-war	Dreadmalkin
-war	Tamiyo's Epiphany
+
+   | Extension	 |     Nom de la Carte      |
+   |:----------:|:------------------------:|
+   |    grn	    |   Arboretum Elemental    |
+   |    grn	    |   Attendant of Vraska    |
+   |    grn	    |       Kraul Raider       |
+   |    lrw	    |       Mulldrifter        |
+   |    lrw	    |        Sentry Oak        |
+   |    lrw	    |    Thorn of Amethyst     |
+   |    war	    |  Cyclops Electromancer   |
+   |    war	    |       Dreadmalkin        |
+   |    war	    |    Tamiyo's Epiphany     |
