@@ -7,7 +7,7 @@ import "./paiement.css";
 import { empty_cart } from "../../datas/logo";
 import PaiementInfo from "../../components/paiement-info/PaiementInfo";
 import { CartContext } from "../../context/cartItem";
-import Recapitulatif from "../../components/recapitulatif /Recapitulatif";
+import Recapitulatif from "../../components/recapitulatif/Recapitulatif";
 
 function Paiement() {
     const { darkMode } = useContext(PreferencesContext);
